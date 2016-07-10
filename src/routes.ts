@@ -23,6 +23,12 @@ let storeTinyUrl = (req, res, next) => {
 
 let redirectTo = (req, res, next) => {
     let shortenParam = req.params.shorten;
+    if (shortenParam.length == 0) {
+        goToHomePage(req, res, next);
+        next();
+        return;
+    }
+    // Get target url and redirect
     let urlInstanceID = shortUrlToID(shortenParam);
     console.log(`ID in db is`, urlInstanceID);
     next();
@@ -36,11 +42,16 @@ let redirectTo = (req, res, next) => {
     });
 }
 
+let goToHomePage = (req, res, next) => {
+    res.send('home page');
+    next();
+}
+
 export let handleRoutesFor = (server:restify.Server) => {
     // Router
     server.get('/home/:name', respond);
     server.head('/home/:name', respond);
 
-    server.post('create', storeTinyUrl);
-    server.get(':shorten', redirectTo);
+    server.post('url/create', storeTinyUrl);
+    server.get('url/:shorten', redirectTo);
 }
