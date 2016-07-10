@@ -1,0 +1,22 @@
+{
+  "name": "shorturl",
+  "version": "1.0.0",
+  "description": "A self deployed web application that shortens the urls around the whole web.",
+  "main": "./dist/main.js",
+  "scripts": {},
+  "keywords": [
+    "typescript"
+  ],
+  "author": "Zhibin Cai",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^2.13.6"
+  },
+  "dependencies": {
+    "bunyan": "^1.8.1",
+    "mysql": "^2.10.2",
+    "restify": "^4.1.0",
+    "sequelize": "^3.23.3"
+  }
+}

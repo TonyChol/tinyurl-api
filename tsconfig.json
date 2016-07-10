@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "noImplicitAny": false,
+        "removeComments": true,
+        "preserveConstEnums": true,        
+        "sourceMap": true,
+        "module": "commonjs",
+        "outDir": "dist"                
+    }, 
+      "filesGlob": [
+        "./src/**/*.ts"
+    ],
+    "exclude": [
+       "node_modules",
+       "bower_components"       
+     ]
+}

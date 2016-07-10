@@ -1,0 +1,9 @@
+{
+  "name": "shorturl",
+  "dependencies": {
+    "sequelize": "registry:npm/sequelize#3.0.0+20160706040828"
+  },
+  "globalDependencies": {
+    "restify": "registry:dt/restify#2.0.0+20160709054712"
+  }
+}
