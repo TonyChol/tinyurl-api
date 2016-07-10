@@ -30,3 +30,7 @@ gulp.task('compile-test', function () {
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(config.outputFolder));
 });
+
+gulp.task('default', function () {
+    gulp.watch('src/**/*.ts', ['compile-all'])
+});
