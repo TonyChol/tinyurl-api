@@ -1,6 +1,7 @@
 import { save } from './store/saveUrl';
 import * as restify from 'restify';
 import {idToShortenUrl, shortUrlToID} from './helpers/shorten';
+import { Url } from './models/url';
 
 let respond = (req, res, next) => {
     res.send('hello ' + req.params.name);
@@ -12,16 +13,27 @@ let storeTinyUrl = (req, res, next) => {
     console.log("The long url is %s", longUrl);
     save(longUrl).then(data => {
         let postfix = idToShortenUrl(data['id']);
-        console.log(`Shorten url of htt://zhib.in/${ postfix }`);
-        console.log(`, which refers to ${ shortUrlToID(postfix)} in database.`);
+        res.send(201, {
+            success: true,
+            shorten: `http://zhib.in/${ postfix }`
+        });
     });
     next();
 }
 
 let redirectTo = (req, res, next) => {
-    console.log("The shorten url part is %s", req.params.shorten);
+    let shortenParam = req.params.shorten;
+    let urlInstanceID = shortUrlToID(shortenParam);
+    console.log(`ID in db is`, urlInstanceID);
     next();
-    res.send("http://google.com");
+    Url
+    .find({ where: { id: urlInstanceID } })
+    .then(result => {
+        res.redirect(result['url'].trim(), next);
+    })
+    .catch(error => {
+        res.send(404, "Sorry the url you requested is not found...");
+    });
 }
 
 export let handleRoutesFor = (server:restify.Server) => {
