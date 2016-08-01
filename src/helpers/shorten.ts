@@ -1,3 +1,8 @@
+// Helper functions that supports the functionalities
+// about shorten the urls
+// --------------------------------------------------
+// id: The id of the actual url in the database
+
 let chars: string = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 let base62 = (character: string) => {
