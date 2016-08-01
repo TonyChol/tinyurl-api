@@ -10,9 +10,9 @@ let respond = (req, res, next) => {
 
 let storeTinyUrl = (req, res, next) => {
     let longUrl = req.params.url;
-    console.log("The long url is %s", longUrl);
     save(longUrl).then(data => {
-        let postfix = idToShortenUrl(data['id']);
+        let id = data['id']
+        let postfix = idToShortenUrl(id)
         res.send(201, {
             success: true,
             shorten: `http://zhib.in/${ postfix }`
@@ -23,12 +23,6 @@ let storeTinyUrl = (req, res, next) => {
 
 let redirectTo = (req, res, next) => {
     let shortenParam = req.params.shorten;
-    if (shortenParam.length == 0) {
-        goToHomePage(req, res, next);
-        next();
-        return;
-    }
-    // Get target url and redirect
     let urlInstanceID = shortUrlToID(shortenParam);
     console.log(`ID in db is`, urlInstanceID);
     next();
@@ -38,7 +32,7 @@ let redirectTo = (req, res, next) => {
         res.redirect(result['url'].trim(), next);
     })
     .catch(error => {
-        res.send(404, "Sorry the url you requested is not found...");
+        res.send(404, `Sorry the url you requested is not found... ${ error }`);
     });
 }
 
@@ -52,6 +46,7 @@ export let handleRoutesFor = (server:restify.Server) => {
     server.get('/home/:name', respond);
     server.head('/home/:name', respond);
 
+    // server.get(':home', goToHomePage);
     server.post('url/create', storeTinyUrl);
     server.get('url/:shorten', redirectTo);
 }
