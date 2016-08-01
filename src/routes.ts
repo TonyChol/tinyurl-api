@@ -47,6 +47,6 @@ export let handleRoutesFor = (server:restify.Server) => {
     server.head('/home/:name', respond);
 
     // server.get(':home', goToHomePage);
-    server.post('/create', storeTinyUrl);
-    server.get('/:shorten', redirectTo);
+    server.post('url/create', storeTinyUrl);
+    server.get('url/:shorten', redirectTo);
 }

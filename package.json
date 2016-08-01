@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "bunyan": "^1.8.1",
+    "gulp": "^3.9.1",
     "mysql": "^2.10.2",
     "restify": "^4.1.0",
     "sequelize": "^3.23.3"
