@@ -3,6 +3,8 @@ import * as restify from 'restify';
 import {idToShortenUrl, shortUrlToID} from './helpers/shorten';
 import { Url } from './models/url';
 
+let siteName = "http://api.zhibincai.com" ;
+
 let respond = (req, res, next) => {
     res.send('hello ' + req.params.name);
     next();
@@ -15,7 +17,7 @@ let storeTinyUrl = (req, res, next) => {
         let postfix = idToShortenUrl(id)
         res.send(201, {
             success: true,
-            shorten: `http://zhib.in/${ postfix }`
+            shorten: `${ siteName }/${ postfix }`
         });
     });
     next();
@@ -24,7 +26,6 @@ let storeTinyUrl = (req, res, next) => {
 let redirectTo = (req, res, next) => {
     let shortenParam = req.params.shorten;
     let urlInstanceID = shortUrlToID(shortenParam);
-    console.log(`ID in db is`, urlInstanceID);
     next();
     Url
     .find({ where: { id: urlInstanceID } })
@@ -41,7 +42,7 @@ let goToHomePage = (req, res, next) => {
     next();
 }
 
-export let handleRoutesFor = (server:restify.Server) => {
+export let handleRoutesFor = (server: restify.Server) => {
     // Router
     server.get('/home/:name', respond);
     server.head('/home/:name', respond);
