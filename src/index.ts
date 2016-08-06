@@ -6,6 +6,12 @@ let server = restify.createServer({
 });
 
 // This line MUST appear before any route declaration such as the one below
+// Restify Middleware
+server.use(restify.throttle({
+    burst: 100,
+    rate: 50,
+    ip: true
+}));
 server.use(restify.bodyParser());
 
 handleRoutesFor(server);
