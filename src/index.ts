@@ -14,6 +14,9 @@ server.use(restify.throttle({
     ip: true
 }));
 
+server.use(restify.CORS())
+server.use(restify.fullResponse());
+
 handleRoutesFor(server);
 
 server.listen(8080, function() {

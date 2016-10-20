@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "A self deployed web application that shortens the urls around the whole web.",
   "main": "./dist/main.js",
-  "scripts": {},
+  "scripts": {
+    "start": "nodemon ./dist index.js"
+  },
   "keywords": [
     "typescript"
   ],

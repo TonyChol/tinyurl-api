@@ -17,7 +17,7 @@ let storeTinyUrl = (req, res, next) => {
         let postfix = idToShortenUrl(id);
         res.send(201, {
             success: true,
-            shorten: `${ siteName }/${ postfix }`
+            shorten: `${ siteName }/url/${ postfix }`
         });
     });
     next();
@@ -43,6 +43,10 @@ let goToHomePage = (req, res, next) => {
 };
 
 export let handleRoutesFor = (server: restify.Server) => {
+    server.opts(/\.*/, function (req, res, next) {
+        res.send(200);
+        next();
+    });
     server.get('/home/:name', respond);
     server.head('/home/:name', respond);
 
