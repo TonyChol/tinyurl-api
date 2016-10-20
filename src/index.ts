@@ -14,8 +14,37 @@ server.use(restify.throttle({
     ip: true
 }));
 
-server.use(restify.CORS())
-server.use(restify.fullResponse());
+// server.use(restify.CORS())
+// server.use(restify.fullResponse());
+server.use(
+    restify.CORS({
+        origins: [
+            'http://api.zhibincai.com',
+            'https://www.zhibincai.com',
+        ],
+        headers: [
+            "authorization",
+            "withcredentials",
+            "x-requested-with",
+            "x-forwarded-for",
+            "x-real-ip",
+            "x-customheader",
+            "user-agent",
+            "keep-alive",
+            "host",
+            "accept",
+            "connection",
+            "upgrade",
+            "content-type",
+            "dnt",
+            "if-modified-since",
+            "cache-control"
+        ]
+    })
+);
+
+// Handle all OPTIONS requests to a deadend (Allows CORS to work them out)
+server.opts( /.*/, ( req, res ) => res.send( 204 ) )
 
 handleRoutesFor(server);
 
