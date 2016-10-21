@@ -5,35 +5,15 @@ let server = restify.createServer({
     name: 'TinyUrl App'
 });
 
-// CORS Support
-server.use(
-    restify.CORS({
-        origins: [
-            'api.zbcai.xyz',
-            'zbcai.xyz',
-        ],
-        headers: [
-            "authorization",
-            "withcredentials",
-            "x-requested-with",
-            "x-forwarded-for",
-            "x-real-ip",
-            "x-customheader",
-            "user-agent",
-            "keep-alive",
-            "host",
-            "accept",
-            "connection",
-            "upgrade",
-            "content-type",
-            "dnt",
-            "if-modified-since",
-            "cache-control"
-        ]
-    })
-);
-
+// --------------------------------------------------------------
 // Restify Middlewares
+
+// CORS support
+server.use(function crossOrigin(req,res,next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    return next();
+});
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
 server.use(restify.throttle({
@@ -42,6 +22,7 @@ server.use(restify.throttle({
     ip: true
 }));
 
+// Routes Handler
 handleRoutesFor(server);
 
 server.listen(8080, function() {

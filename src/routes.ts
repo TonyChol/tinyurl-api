@@ -39,7 +39,7 @@ let redirectTo = (req, res, next) => {
 
 export let handleRoutesFor = (server: restify.Server) => {
     // Handle all OPTIONS requests to a deadend (Allows CORS to work them out)
-    server.opts( /.*/, ( req, res ) => res.send( 204 ) )
+    server.opts( /.*/, ( req, res ) => res.send( 204 ) );
     server.get('/home/:name', respond);
     server.head('/home/:name', respond);
 
