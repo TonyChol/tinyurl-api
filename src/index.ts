@@ -4,21 +4,13 @@ import { handleRoutesFor } from './routes';
 let server = restify.createServer({
     name: 'TinyUrl App'
 });
-// Restify Middlewares
-server.use(restify.queryParser());
-server.use(restify.bodyParser());
-server.use(restify.throttle({
-    burst: 100,
-    rate: 50,
-    ip: true
-}));
 
 // CORS Support
 server.use(
     restify.CORS({
         origins: [
-            'http://api.zbcai.xyz',
-            'https://zbcai.xyz',
+            'api.zbcai.xyz',
+            'zbcai.xyz',
         ],
         headers: [
             "authorization",
@@ -40,6 +32,15 @@ server.use(
         ]
     })
 );
+
+// Restify Middlewares
+server.use(restify.queryParser());
+server.use(restify.bodyParser());
+server.use(restify.throttle({
+    burst: 100,
+    rate: 50,
+    ip: true
+}));
 
 handleRoutesFor(server);
 

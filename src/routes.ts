@@ -17,7 +17,7 @@ let storeTinyUrl = (req, res, next) => {
         let postfix = idToShortenUrl(id);
         res.send(201, {
             success: true,
-            shorten: `${ siteName }/url/${ postfix }`
+            shorten: `${ siteName }/${ postfix }`
         });
     });
     next();
