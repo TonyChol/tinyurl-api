@@ -3,7 +3,7 @@ import * as restify from 'restify';
 import {idToShortenUrl, shortUrlToID} from './helpers/shorten';
 import { Url } from './models/url';
 
-let siteName = "http://api.zhibincai.com" ;
+let siteName = "http://zbcai.xyz" ;
 
 let respond = (req, res, next) => {
     res.send('hello ' + req.params.name);
