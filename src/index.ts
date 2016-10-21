@@ -17,8 +17,8 @@ server.use(restify.throttle({
 server.use(
     restify.CORS({
         origins: [
-            'http://api.zhibincai.com',
-            'https://www.zhibincai.com',
+            'http://api.zbcai.xyz',
+            'https://zbcai.xyz',
         ],
         headers: [
             "authorization",
