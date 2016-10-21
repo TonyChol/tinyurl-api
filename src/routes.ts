@@ -37,20 +37,13 @@ let redirectTo = (req, res, next) => {
     });
 };
 
-let goToHomePage = (req, res, next) => {
-    res.send('home page');
-    next();
-};
-
-
-
 export let handleRoutesFor = (server: restify.Server) => {
     // Handle all OPTIONS requests to a deadend (Allows CORS to work them out)
     server.opts( /.*/, ( req, res ) => res.send( 204 ) )
     server.get('/home/:name', respond);
     server.head('/home/:name', respond);
 
-    // server.get(':home', goToHomePage);
+    server.get(':shorten', redirectTo);
     server.post('url/create', storeTinyUrl);
     server.get('url/:shorten', redirectTo);
 };

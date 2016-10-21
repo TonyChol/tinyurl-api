@@ -4,10 +4,9 @@ import { handleRoutesFor } from './routes';
 let server = restify.createServer({
     name: 'TinyUrl App'
 });
-// Restify Middleware
+// Restify Middlewares
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
-// This line MUST appear before any route declaration such as the one below
 server.use(restify.throttle({
     burst: 100,
     rate: 50,
@@ -41,8 +40,6 @@ server.use(
         ]
     })
 );
-
-
 
 handleRoutesFor(server);
 
