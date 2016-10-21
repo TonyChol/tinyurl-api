@@ -43,25 +43,10 @@ let goToHomePage = (req, res, next) => {
 };
 
 
-// function corsHandler(req, res, next) {
-//
-//     res.setHeader('Access-Control-Allow-Origin', 'http://zhibincai.com');
-//     res.setHeader('Access-Control-Allow-Headers', 'Origin, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-Response-Time, X-PINGOTHER, X-CSRF-Token');
-//     res.setHeader('Access-Control-Allow-Methods', '*');
-//     res.setHeader('Access-Control-Expose-Headers', 'X-Api-Version, X-Request-Id, X-Response-Time');
-//     res.setHeader('Access-Control-Max-Age', '1000');
-//
-//     return next();
-// }
-//
-// function optionsRoute(req, res, next) {
-//
-//     res.send(200);
-//     return next();
-// }
 
 export let handleRoutesFor = (server: restify.Server) => {
-    // server.opts(/\.*/, corsHandler, optionsRoute);
+    // Handle all OPTIONS requests to a deadend (Allows CORS to work them out)
+    server.opts( /.*/, ( req, res ) => res.send( 204 ) )
     server.get('/home/:name', respond);
     server.head('/home/:name', respond);
 

@@ -14,8 +14,7 @@ server.use(restify.throttle({
     ip: true
 }));
 
-// server.use(restify.CORS())
-// server.use(restify.fullResponse());
+// CORS Support
 server.use(
     restify.CORS({
         origins: [
@@ -43,8 +42,7 @@ server.use(
     })
 );
 
-// Handle all OPTIONS requests to a deadend (Allows CORS to work them out)
-server.opts( /.*/, ( req, res ) => res.send( 204 ) )
+
 
 handleRoutesFor(server);
 
