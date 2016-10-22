@@ -9,11 +9,12 @@ let server = restify.createServer({
 // Restify Middlewares
 
 // CORS support
-server.use(function crossOrigin(req,res,next){
+server.pre(function crossOrigin(req,res,next){
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     return next();
 });
+// server.pre(restify.CORS());
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
 server.use(restify.throttle({
