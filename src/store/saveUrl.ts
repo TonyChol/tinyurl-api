@@ -4,9 +4,8 @@ import { Url } from '../models/url';
 
 export const save = (longUrl: String) => {
     return new Sequelize.Promise((resolve, reject) => {
-        Url
-            .find({ where: { url: longUrl } })
-            .then( (result) => {
+        Url.find({ where: { url: longUrl } })
+           .then(result => {
                 if (!result) {
                     sequelize.sync().then(obj => {
                         Url.create({
@@ -15,8 +14,7 @@ export const save = (longUrl: String) => {
                             resolve(result);
                         });
                     }
-                )}
-                else {
+                )} else {
                     resolve(result);        // The url already exists in the database
                 }
             }, err => {

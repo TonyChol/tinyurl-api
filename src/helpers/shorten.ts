@@ -2,8 +2,6 @@
 // about shorten the urls
 // --------------------------------------------------
 
-let chars: string = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
 let shuffleChars: string = "wjGJRzNH90ua78gbvB6sICXYpeAWc3ZlryhxOE1kTdtSoP4LMDKQUqF5nVifm2";
 
 let base62 = (character: string) => {
