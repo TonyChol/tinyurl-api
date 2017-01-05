@@ -1,4 +1,4 @@
-import { save } from './store/saveUrl';
+import { save } from './store/save';
 import * as restify from 'restify';
 import {idToShortenUrl, shortUrlToID} from './helpers/shorten';
 import { Url } from './models/url';
