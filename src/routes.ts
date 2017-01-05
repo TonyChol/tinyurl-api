@@ -3,13 +3,22 @@ import * as restify from 'restify';
 import {idToShortenUrl, shortUrlToID} from './helpers/shorten';
 import { Url } from './models/url';
 
-let siteName = "http://zbcai.xyz" ;
+const siteName = "http://zbcai.xyz" ;
 
 let respond = (req, res, next) => {
     res.send('hello ' + req.params.name);
     next();
 };
 
+/**
+ * Handler for the post request to create an url item.
+ * Stores the origin url in the database,
+ * and returns the shortened result
+ * 
+ * @param {restify.Request} req
+ * @param {restify.result} res
+ * @param {middleware helper} next
+ */
 let storeTinyUrl = (req, res, next) => {
     let longUrl = req.params.url;
     save(longUrl).then(data => {
@@ -23,6 +32,13 @@ let storeTinyUrl = (req, res, next) => {
     next();
 };
 
+/**
+ * Redirects to the original url based on the shortened one.
+ * 
+ * @param {restify.Request} req
+ * @param {restify.result} res
+ * @param {middleware helper} next
+ */
 let redirectTo = (req, res, next) => {
     let shortenParam = req.params.shorten;
     let urlInstanceID = shortUrlToID(shortenParam);

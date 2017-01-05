@@ -16,7 +16,6 @@ server.pre(function crossOrigin(req,res,next){
     return next();
 });
 
-// server.pre(restify.CORS());
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
 server.use(restify.throttle({
