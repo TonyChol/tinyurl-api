@@ -5,7 +5,7 @@
   "main": "./dist/main.js",
   "scripts": {
     "start": "nodemon ./dist index.js",
-    "test": "./node_modules/mocha/bin/mocha -r ts-node/register src/test/**/*.ts"
+    "test": "./node_modules/mocha/bin/mocha dist/test/**/*.js"
   },
   "keywords": [
     "typescript"

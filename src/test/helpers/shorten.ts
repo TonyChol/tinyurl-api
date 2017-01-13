@@ -2,7 +2,6 @@
 import { expect } from 'chai';
 import 'mocha';
 
-
 // Targets
 import { idToShortenUrl, shortUrlToID } from '../../helpers/shorten';
 
