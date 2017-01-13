@@ -4,7 +4,8 @@
   "description": "A self deployed web application that shortens the urls around the whole web.",
   "main": "./dist/main.js",
   "scripts": {
-    "start": "nodemon ./dist index.js"
+    "start": "nodemon ./dist index.js",
+    "test": "./node_modules/mocha/bin/mocha -r ts-node/register src/test/**/*.ts"
   },
   "keywords": [
     "typescript"
@@ -12,9 +13,14 @@
   "author": "Zhibin Cai",
   "license": "MIT",
   "devDependencies": {
+    "@types/chai": "^3.4.34",
+    "@types/mocha": "^2.2.37",
+    "chai": "^3.5.0",
     "gulp": "^3.9.1",
     "gulp-typescript": "^2.13.6",
     "gulp-watch": "^4.3.8",
+    "mocha": "^3.2.0",
+    "ts-node": "^2.0.0",
     "watchify": "^3.7.0"
   },
   "dependencies": {
