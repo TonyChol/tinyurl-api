@@ -1,5 +1,5 @@
 // Helper functions that supports the functionalities
-// about shorten the urls
+// about shortening the urls.
 // --------------------------------------------------
 
 let shuffleChars: string = "wjGJRzNH90ua78gbvB6sICXYpeAWc3ZlryhxOE1kTdtSoP4LMDKQUqF5nVifm2";
