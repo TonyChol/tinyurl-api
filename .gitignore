@@ -45,3 +45,6 @@ dist
 
 # Idea
 .idea/*
+
+# Repository specific
+src/store/db.ts
