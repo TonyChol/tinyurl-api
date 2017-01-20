@@ -15,3 +15,11 @@ Usage
 3. Rename `db.sample.ts` into `db.ts` and add your MySQL crendentials into the file.
 4. Run `gulp compile-all` to transpile your TypeScript code into Node.js.
 5. Run the `index.js` file with `node dist/index.js` or using `nodemon`, `pm2`, etc to execute it.
+
+Test
+-----
+1. Run `npm test` to fire the tests, which mainly focus on the link converting functionality.
+
+
+
+Cheers!
